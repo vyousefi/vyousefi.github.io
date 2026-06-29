@@ -1,0 +1,566 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- ============================================================
+       SEO + SHARING  — edit the bracketed values
+       ============================================================ -->
+  <title>Vahid [Last Name] — Marketing PhD Candidate, UMass Amherst</title>
+  <meta name="description" content="Marketing PhD candidate at UMass Amherst studying executive cognition, overconfidence, and market-based assets, alongside consumer decision-making." />
+  <meta name="author" content="Vahid [Last Name]" />
+  <!-- Open Graph (controls how the link looks when shared) -->
+  <meta property="og:title" content="Vahid [Last Name] — Marketing PhD Candidate" />
+  <meta property="og:description" content="Research on executive cognition, market-based assets, and consumer decision-making." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://[your-username].github.io" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       DESIGN TOKENS
+       ============================================================ */
+    :root{
+      --ink:#131426;
+      --ink-2:#2c2e4a;
+      --muted:#5b5d78;
+      --paper:#f5f6fb;
+      --surface:#ffffff;
+      --line:#e7e9f3;
+
+      --accent:#3b46e6;
+      --accent-ink:#2a33b8;
+      --accent-soft:#eef0ff;
+
+      /* atmospheric mesh */
+      --g1:#6d5bff;
+      --g2:#3b46e6;
+      --g3:#27c6d8;
+      --g4:#a78bff;
+
+      --maxw:1080px;
+      --radius:18px;
+      --radius-sm:12px;
+
+      --font-display:"Space Grotesk", system-ui, sans-serif;
+      --font-body:"IBM Plex Sans", system-ui, sans-serif;
+      --font-mono:"IBM Plex Mono", ui-monospace, monospace;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:var(--font-body);
+      color:var(--ink);
+      background:var(--paper);
+      line-height:1.65;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+
+    .container{width:min(var(--maxw),92vw);margin-inline:auto}
+    .section{padding:clamp(70px,9vw,124px) 0;position:relative}
+    .eyebrow{
+      font-family:var(--font-mono);
+      font-size:.72rem;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:var(--accent-ink);
+      display:inline-block;
+      margin-bottom:1.1rem;
+    }
+    h1,h2,h3{font-family:var(--font-display);font-weight:600;line-height:1.08;letter-spacing:-.02em}
+    .lead{color:var(--muted);font-size:clamp(1.02rem,1.6vw,1.18rem);max-width:60ch}
+
+    /* ============================================================
+       NAV
+       ============================================================ */
+    header.nav{
+      position:sticky;top:0;z-index:50;
+      transition:background .3s ease, box-shadow .3s ease, border-color .3s ease;
+      border-bottom:1px solid transparent;
+    }
+    header.nav.scrolled{
+      background:rgba(245,246,251,.82);
+      backdrop-filter:saturate(160%) blur(12px);
+      -webkit-backdrop-filter:saturate(160%) blur(12px);
+      border-bottom:1px solid var(--line);
+    }
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px}
+    .brand{font-family:var(--font-display);font-weight:600;font-size:1.06rem;letter-spacing:-.01em}
+    .brand span{color:var(--accent)}
+    .nav-links{display:flex;align-items:center;gap:1.9rem}
+    .nav-links a{font-size:.92rem;color:var(--ink-2);transition:color .2s}
+    .nav-links a:hover,.nav-links a.active{color:var(--accent)}
+    .nav-cta{
+      font-family:var(--font-mono);font-size:.8rem;letter-spacing:.04em;
+      padding:.5rem .95rem;border:1px solid var(--ink);border-radius:999px;
+      transition:background .2s,color .2s,border-color .2s;
+    }
+    .nav-cta:hover{background:var(--ink);color:#fff}
+    .menu-btn{display:none;background:none;border:0;cursor:pointer;padding:.4rem;color:var(--ink)}
+
+    /* ============================================================
+       HERO
+       ============================================================ */
+    .hero{position:relative;overflow:hidden;padding:clamp(56px,8vw,96px) 0 clamp(64px,9vw,108px)}
+    .mesh{position:absolute;inset:0;z-index:0;pointer-events:none;filter:blur(60px);opacity:.55}
+    .mesh i{position:absolute;border-radius:50%;display:block}
+    .mesh .b1{width:46vw;height:46vw;left:-10vw;top:-14vw;background:radial-gradient(circle at 30% 30%,var(--g1),transparent 65%);animation:drift1 18s ease-in-out infinite}
+    .mesh .b2{width:40vw;height:40vw;right:-8vw;top:-6vw;background:radial-gradient(circle at 60% 40%,var(--g3),transparent 62%);animation:drift2 22s ease-in-out infinite}
+    .mesh .b3{width:38vw;height:38vw;right:8vw;bottom:-16vw;background:radial-gradient(circle at 50% 50%,var(--g4),transparent 64%);animation:drift1 26s ease-in-out infinite reverse}
+    @keyframes drift1{0%,100%{transform:translate(0,0)}50%{transform:translate(4%,5%)}}
+    @keyframes drift2{0%,100%{transform:translate(0,0)}50%{transform:translate(-5%,4%)}}
+
+    .hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.55fr .95fr;gap:clamp(2rem,5vw,4.5rem);align-items:center}
+    .hero h1{font-size:clamp(2.4rem,5.6vw,4.4rem);margin:.2rem 0 1.4rem}
+    .hero h1 em{font-style:normal;color:var(--accent)}
+    .hero .lead{margin-bottom:2rem;max-width:50ch}
+    .cta-row{display:flex;flex-wrap:wrap;gap:.7rem}
+    .btn{
+      font-family:var(--font-mono);font-size:.86rem;letter-spacing:.02em;
+      display:inline-flex;align-items:center;gap:.5rem;
+      padding:.72rem 1.25rem;border-radius:999px;transition:transform .18s,background .2s,color .2s,border-color .2s;
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary{background:var(--ink);color:#fff}
+    .btn-primary:hover{background:var(--accent)}
+    .btn-ghost{border:1px solid var(--line);background:var(--surface);color:var(--ink-2)}
+    .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+
+    /* portrait */
+    .portrait-wrap{display:flex;justify-content:center}
+    .portrait{
+      width:min(290px,72vw);aspect-ratio:1;border-radius:24px;position:relative;
+      background:conic-gradient(from 140deg,var(--g1),var(--g2),var(--g3),var(--g4),var(--g1));
+      padding:5px;box-shadow:0 30px 60px -28px rgba(59,70,230,.55);
+    }
+    .portrait-inner{
+      width:100%;height:100%;border-radius:20px;overflow:hidden;background:var(--surface);
+      display:flex;align-items:center;justify-content:center;
+    }
+    /* Replace this block with: <img src="photo.jpg" alt="Vahid [Last Name]"> */
+    .portrait-placeholder{
+      width:100%;height:100%;display:flex;align-items:center;justify-content:center;
+      font-family:var(--font-display);font-size:5rem;font-weight:600;color:var(--accent);
+      background:linear-gradient(160deg,var(--accent-soft),#fff);
+    }
+
+    /* ============================================================
+       ABOUT
+       ============================================================ */
+    .about-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:clamp(2rem,5vw,4rem)}
+    .about-copy h2{font-size:clamp(1.7rem,3.2vw,2.5rem);margin-bottom:1.4rem}
+    .about-copy p{color:var(--ink-2);margin-bottom:1.1rem;max-width:58ch}
+    .facts{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);padding:1.6rem 1.7rem;align-self:start}
+    .fact{padding:.95rem 0;border-bottom:1px solid var(--line)}
+    .fact:last-child{border-bottom:0}
+    .fact .k{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:.25rem}
+    .fact .v{font-weight:500;color:var(--ink)}
+
+    /* ============================================================
+       RESEARCH
+       ============================================================ */
+    .sec-head{max-width:62ch;margin-bottom:2.8rem}
+    .sec-head h2{font-size:clamp(1.8rem,3.4vw,2.6rem);margin-bottom:.9rem}
+
+    .featured{
+      border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
+      background:
+        linear-gradient(180deg,rgba(59,70,230,.05),rgba(59,70,230,0) 38%),
+        var(--surface);
+      position:relative;margin-bottom:1.4rem;
+    }
+    .featured::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(var(--g2),var(--g3))}
+    .featured-body{padding:clamp(1.6rem,3vw,2.4rem)}
+    .featured h3{font-size:clamp(1.3rem,2.4vw,1.7rem);margin:.6rem 0 .8rem;max-width:30ch}
+    .featured p{color:var(--ink-2);max-width:64ch;margin-bottom:1.3rem}
+
+    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.4rem}
+    .card{
+      border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);
+      padding:1.7rem 1.7rem 1.55rem;transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease;
+      display:flex;flex-direction:column;
+    }
+    .card:hover{transform:translateY(-4px);box-shadow:0 22px 44px -30px rgba(19,20,38,.5);border-color:#d4d8ee}
+    .card h3{font-size:1.18rem;margin:.55rem 0 .65rem;line-height:1.25}
+    .card p{color:var(--ink-2);font-size:.96rem;margin-bottom:1.15rem;flex:1}
+
+    .cat{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+    .tags{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:auto}
+    .tag{
+      font-family:var(--font-mono);font-size:.7rem;letter-spacing:.02em;
+      padding:.32rem .6rem;border-radius:999px;background:var(--paper);border:1px solid var(--line);color:var(--muted);
+    }
+    .tag.status{background:var(--accent-soft);border-color:#dfe2ff;color:var(--accent-ink)}
+    .tag.venue{background:#f0fbfd;border-color:#cdeef4;color:#0f7c8c}
+
+    /* ============================================================
+       METHODS
+       ============================================================ */
+    .methods-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+    .mcol h3{font-size:1.02rem;margin-bottom:1rem;display:flex;align-items:center;gap:.55rem}
+    .mcol h3 .dot{width:9px;height:9px;border-radius:50%;background:var(--accent)}
+    .mcol ul{list-style:none}
+    .mcol li{padding:.5rem 0;border-bottom:1px solid var(--line);color:var(--ink-2);font-size:.95rem}
+    .mcol li:last-child{border-bottom:0}
+
+    /* ============================================================
+       TEACHING
+       ============================================================ */
+    .teach-row{
+      display:flex;align-items:baseline;justify-content:space-between;gap:1.5rem;
+      padding:1.25rem 0;border-bottom:1px solid var(--line);
+    }
+    .teach-row:first-of-type{border-top:1px solid var(--line)}
+    .teach-row .t-title{font-family:var(--font-display);font-weight:500;font-size:1.12rem}
+    .teach-row .t-meta{font-family:var(--font-mono);font-size:.78rem;color:var(--muted);letter-spacing:.03em;white-space:nowrap}
+
+    /* ============================================================
+       CONTACT (dark)
+       ============================================================ */
+    .section--dark{background:var(--ink);color:#fff;overflow:hidden;position:relative}
+    .section--dark .mesh{opacity:.4;filter:blur(70px)}
+    .contact-inner{position:relative;z-index:1;text-align:center;max-width:46ch;margin-inline:auto}
+    .section--dark .eyebrow{color:#9aa0ff}
+    .contact-inner h2{font-size:clamp(2rem,4vw,3rem);margin-bottom:1.1rem}
+    .contact-inner p{color:#b9bbd6;margin-bottom:2rem}
+    .section--dark .btn-primary{background:#fff;color:var(--ink)}
+    .section--dark .btn-primary:hover{background:var(--accent);color:#fff}
+    .section--dark .btn-ghost{background:transparent;border-color:rgba(255,255,255,.25);color:#dadcf0}
+    .section--dark .btn-ghost:hover{border-color:#fff;color:#fff}
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    footer.foot{padding:2.4rem 0;border-top:1px solid var(--line)}
+    .foot-inner{display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between}
+    .foot-inner .small{font-family:var(--font-mono);font-size:.76rem;color:var(--muted);letter-spacing:.03em}
+    .foot-links{display:flex;gap:1.3rem}
+    .foot-links a{font-size:.86rem;color:var(--ink-2);transition:color .2s}
+    .foot-links a:hover{color:var(--accent)}
+
+    /* ============================================================
+       MOTION + REVEAL
+       ============================================================ */
+    .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+    .reveal.in{opacity:1;transform:none}
+    .hero .reveal{transition-delay:var(--d,0ms)}
+
+    :focus-visible{outline:2.5px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+    @media (prefers-reduced-motion:reduce){
+      *{animation:none!important}
+      .reveal{opacity:1;transform:none;transition:none}
+      html{scroll-behavior:auto}
+      .btn:hover,.card:hover{transform:none}
+    }
+
+    /* ============================================================
+       RESPONSIVE
+       ============================================================ */
+    @media (max-width:860px){
+      .hero-grid{grid-template-columns:1fr;gap:2.6rem}
+      .portrait-wrap{order:-1}
+      .about-grid{grid-template-columns:1fr}
+      .grid{grid-template-columns:1fr}
+      .methods-grid{grid-template-columns:1fr}
+      .nav-links{
+        position:fixed;inset:68px 0 auto 0;flex-direction:column;gap:1.4rem;
+        background:rgba(245,246,251,.97);backdrop-filter:blur(12px);
+        padding:1.8rem 0 2.2rem;border-bottom:1px solid var(--line);
+        transform:translateY(-130%);transition:transform .32s ease;
+      }
+      .nav-links.open{transform:translateY(0)}
+      .menu-btn{display:block}
+      .teach-row{flex-direction:column;gap:.3rem}
+      .teach-row .t-meta{white-space:normal}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===================== NAV ===================== -->
+  <header class="nav" id="nav">
+    <div class="container nav-inner">
+      <a href="#top" class="brand">Vahid<span>.</span></a>
+      <nav class="nav-links" id="navlinks">
+        <a href="#about">About</a>
+        <a href="#research">Research</a>
+        <a href="#methods">Methods</a>
+        <a href="#teaching">Teaching</a>
+        <a href="#contact">Contact</a>
+        <a href="cv.pdf" class="nav-cta">CV ↗</a>
+      </nav>
+      <button class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ===================== HERO ===================== -->
+    <section class="hero">
+      <div class="mesh" aria-hidden="true"><i class="b1"></i><i class="b2"></i><i class="b3"></i></div>
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow reveal" style="--d:0ms">PhD Candidate · Marketing — Isenberg, UMass Amherst</span>
+          <h1 class="reveal" style="--d:80ms">Where executive <em>cognition</em> meets market <em>value</em>.</h1>
+          <p class="lead reveal" style="--d:160ms">I'm a marketing PhD candidate studying how cognition and overconfidence in the C-suite shape the brand, customer, and relational assets firms compete on — with parallel work on how consumers form ownership, fairness, and switching decisions.</p>
+          <div class="cta-row reveal" style="--d:240ms">
+            <a href="cv.pdf" class="btn btn-primary">View CV</a>
+            <a href="mailto:[you]@umass.edu" class="btn btn-ghost">Email</a>
+            <a href="#" class="btn btn-ghost">Google Scholar</a>
+            <a href="#" class="btn btn-ghost">LinkedIn</a>
+          </div>
+        </div>
+        <div class="portrait-wrap reveal" style="--d:200ms">
+          <div class="portrait">
+            <div class="portrait-inner">
+              <!-- To use a real photo, replace the line below with:
+                   <img src="photo.jpg" alt="Vahid [Last Name]" style="width:100%;height:100%;object-fit:cover"> -->
+              <div class="portrait-placeholder">V</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== ABOUT ===================== -->
+    <section class="section" id="about">
+      <div class="container about-grid">
+        <div class="about-copy reveal">
+          <span class="eyebrow">About</span>
+          <h2>Research that connects strategy and behavior.</h2>
+          <p>My work sits at the meeting point of marketing strategy and behavioral science. On the strategy side, I study how the way executives think — overconfidence, and the over­estimation, over­placement, and over­precision behind it — translates into the market-based assets that drive long-run firm value, using panel econometrics, structural models, machine learning, and text analysis.</p>
+          <p>On the behavioral side, I examine how consumers make decisions: how they form psychological ownership, judge fairness, and switch between options. Across both, I'm drawn to how businesses actually work and to the role technology plays in shaping decisions on either side of the market.</p>
+          <p>I expect to complete my PhD in September 2027 and am preparing for the academic job market.</p>
+        </div>
+        <aside class="facts reveal">
+          <div class="fact"><span class="k">Institution</span><span class="v">Isenberg School of Management, UMass Amherst</span></div>
+          <div class="fact"><span class="k">Advisor</span><span class="v">Thomas Brashear Alejandro (Chair)</span></div>
+          <div class="fact"><span class="k">Committee</span><span class="v">George Milne, [+ others]</span></div>
+          <div class="fact"><span class="k">Fields</span><span class="v">Marketing Strategy · Consumer Behavior</span></div>
+          <div class="fact"><span class="k">Job market</span><span class="v">Available [Fall 2027] — verify cycle</span></div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ===================== RESEARCH ===================== -->
+    <section class="section" id="research" style="background:linear-gradient(180deg,#fff,var(--paper))">
+      <div class="container">
+        <div class="sec-head reveal">
+          <span class="eyebrow">Research</span>
+          <h2>Four active projects across meso and micro marketing.</h2>
+          <p class="lead">From executive decision-making to consumer switching — bridging marketing strategy and consumer behavior.</p>
+        </div>
+
+        <!-- FEATURED / JMP -->
+        <article class="featured reveal">
+          <div class="featured-body">
+            <span class="cat">Job Market Paper · Dissertation</span>
+            <h3>CEO Overconfidence and Market-Based Assets <span style="color:var(--muted);font-weight:400">[working title]</span></h3>
+            <p>How overconfidence in the C-suite — captured through overestimation, overplacement, and overprecision — shapes the brand, customer, and relational assets that underpin long-run firm value. Built on perpetual-inventory stock measures and a difference-in-differences event-study design.</p>
+            <div class="tags">
+              <span class="tag status">Data collection in progress</span>
+              <span class="tag venue">Target: JAMS</span>
+              <span class="tag">Panel econometrics</span>
+              <span class="tag">Difference-in-differences</span>
+              <span class="tag">Text analysis</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- OTHER PROJECTS -->
+        <div class="grid">
+          <article class="card reveal">
+            <span class="cat">Marketing Scholarship</span>
+            <h3>Generalist vs. Specialist Identities in Marketing</h3>
+            <p>With George Milne — examining scholarly identity and the shift between generalist and specialist trajectories across the marketing discipline.</p>
+            <div class="tags">
+              <span class="tag status">Manuscript in preparation</span>
+              <span class="tag venue">Target: J. Marketing Education</span>
+            </div>
+          </article>
+
+          <article class="card reveal">
+            <span class="cat">Consumer Switching</span>
+            <h3>A Meta-Analysis of Push–Pull–Mooring</h3>
+            <p>Synthesizing 300+ empirical studies to map how push, pull, and mooring forces drive consumer switching across contexts.</p>
+            <div class="tags">
+              <span class="tag status">Manuscript in preparation</span>
+              <span class="tag venue">Target: J. Business Research</span>
+              <span class="tag">Meta-analysis</span>
+            </div>
+          </article>
+
+          <article class="card reveal">
+            <span class="cat">Consumer Behavior</span>
+            <h3>Psychological Ownership in Auto Subscriptions</h3>
+            <p>How subscription-based access models reshape psychological ownership and fairness perceptions in the automotive market.</p>
+            <div class="tags">
+              <span class="tag status">Analysis in progress</span>
+              <span class="tag venue">Target: J. Business Research</span>
+              <span class="tag">Experiments</span>
+            </div>
+          </article>
+
+          <article class="card reveal" style="background:linear-gradient(160deg,var(--accent-soft),#fff);border-style:dashed">
+            <span class="cat">Add your own</span>
+            <h3>More work in the pipeline</h3>
+            <p>Duplicate any card above to add a new project, or remove this placeholder. Keep status language honest — reviewers and committees notice.</p>
+            <div class="tags"><span class="tag">Editable</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== METHODS ===================== -->
+    <section class="section" id="methods">
+      <div class="container">
+        <div class="sec-head reveal">
+          <span class="eyebrow">Methods &amp; Tools</span>
+          <h2>A quantitative and behavioral toolkit.</h2>
+        </div>
+        <div class="methods-grid">
+          <div class="mcol reveal">
+            <h3><span class="dot"></span>Quantitative &amp; Causal</h3>
+            <ul>
+              <li>Panel econometrics</li>
+              <li>Difference-in-differences event studies</li>
+              <li>Structural models</li>
+              <li>Perpetual-inventory stock measures</li>
+            </ul>
+          </div>
+          <div class="mcol reveal">
+            <h3><span class="dot"></span>Computational</h3>
+            <ul>
+              <li>Machine learning</li>
+              <li>Text analysis</li>
+              <li>Meta-analysis</li>
+              <li>[Software: R · Python · Stata]</li>
+            </ul>
+          </div>
+          <div class="mcol reveal">
+            <h3><span class="dot"></span>Behavioral</h3>
+            <ul>
+              <li>Experimental design</li>
+              <li>Survey methods</li>
+              <li>Consumer decision-making</li>
+              <li>[Add as needed]</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== TEACHING ===================== -->
+    <section class="section" id="teaching" style="background:linear-gradient(180deg,var(--paper),#fff)">
+      <div class="container">
+        <div class="sec-head reveal">
+          <span class="eyebrow">Teaching</span>
+          <h2>In the classroom.</h2>
+          <p class="lead">Replace the rows below with the courses you've taught.</p>
+        </div>
+        <div class="reveal">
+          <div class="teach-row">
+            <span class="t-title">[Course title, e.g. Principles of Marketing]</span>
+            <span class="t-meta">Instructor of Record · UMass Amherst · [Term]</span>
+          </div>
+          <div class="teach-row">
+            <span class="t-title">[Course title]</span>
+            <span class="t-meta">Teaching Assistant · UMass Amherst · [Term]</span>
+          </div>
+          <div class="teach-row">
+            <span class="t-title">[Course title]</span>
+            <span class="t-meta">[Role] · UMass Amherst · [Term]</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CONTACT ===================== -->
+    <section class="section section--dark" id="contact">
+      <div class="mesh" aria-hidden="true"><i class="b1"></i><i class="b2"></i><i class="b3"></i></div>
+      <div class="container contact-inner reveal">
+        <span class="eyebrow">Contact</span>
+        <h2>Let's connect.</h2>
+        <p>Happy to talk about executive cognition, market-based assets, consumer decision-making — or potential collaborations. Based in Amherst, Massachusetts.</p>
+        <div class="cta-row" style="justify-content:center">
+          <a href="mailto:[you]@umass.edu" class="btn btn-primary">Email me</a>
+          <a href="cv.pdf" class="btn btn-ghost">Download CV</a>
+          <a href="#" class="btn btn-ghost">Google Scholar</a>
+          <a href="#" class="btn btn-ghost">LinkedIn</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="foot">
+    <div class="container foot-inner">
+      <span class="small">© <span id="yr"></span> Vahid [Last Name] · Marketing PhD Candidate</span>
+      <div class="foot-links">
+        <a href="#about">About</a>
+        <a href="#research">Research</a>
+        <a href="cv.pdf">CV</a>
+        <a href="mailto:[you]@umass.edu">Email</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // year
+    document.getElementById('yr').textContent = new Date().getFullYear();
+
+    // sticky nav background
+    const nav = document.getElementById('nav');
+    const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 12);
+    onScroll();
+    window.addEventListener('scroll', onScroll, {passive:true});
+
+    // mobile menu
+    const btn = document.getElementById('menuBtn');
+    const links = document.getElementById('navlinks');
+    btn.addEventListener('click', () => {
+      const open = links.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open);
+    });
+    links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      links.classList.remove('open'); btn.setAttribute('aria-expanded', false);
+    }));
+
+    // scroll reveal
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+    }, {threshold:0.12, rootMargin:'0px 0px -40px 0px'});
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    // scroll-spy for nav
+    const sections = ['about','research','methods','teaching','contact']
+      .map(id => document.getElementById(id)).filter(Boolean);
+    const navMap = {};
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      const id = a.getAttribute('href').replace('#',''); if(id) navMap[id]=a;
+    });
+    const spy = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        const a = navMap[e.target.id];
+        if(a && e.isIntersecting){
+          Object.values(navMap).forEach(x=>x.classList.remove('active'));
+          a.classList.add('active');
+        }
+      });
+    }, {threshold:0.5});
+    sections.forEach(s => spy.observe(s));
+  </script>
+</body>
+</html>
