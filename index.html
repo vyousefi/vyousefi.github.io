@@ -1,0 +1,836 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script>document.documentElement.classList.add('js');</script>
+
+  <!-- ============================================================
+       SEO + SHARING  — edit the bracketed URL once your site is live
+       ============================================================ -->
+  <title>Vahid Yousefi — Marketing PhD Candidate, UMass Amherst</title>
+  <meta name="description" content="Vahid Yousefi — Marketing PhD candidate at UMass Amherst studying marketing strategy, sales, decision-making, and consumer behavior." />
+  <meta name="author" content="Vahid Yousefi" />
+  <meta property="og:title" content="Vahid Yousefi — Marketing PhD Candidate" />
+  <meta property="og:description" content="Research on marketing strategy, sales, decision-making, and consumer behavior." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://[your-username].github.io" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       DESIGN TOKENS  — classy navy
+       ============================================================ */
+    :root{
+        --ink:#0b1020;
+        --ink-2:#263247;
+        --muted:#6f7685;
+        --paper:#f7f2e8;
+        --surface:#fffaf2;
+        --line:#e7dcc8;
+
+        --accent:#123b5d;        /* elegant deep navy */
+        --accent-ink:#081f33;    /* very dark navy */
+        --accent-soft:#f0e6d4;   /* champagne tint */
+        --steel:#8c6a35;         /* muted gold */
+
+        --g1:#123b5d;
+        --g2:#0b1020;
+        --g3:#b48a45;
+        --g4:#2f4f68;
+
+      --maxw:1300px;
+      --nav-h:68px;
+      --radius:18px;
+
+      --font-display:"Fraunces", Georgia, serif;
+      --font-body:"DM Sans", system-ui, sans-serif;
+      --font-mono:"DM Mono", ui-monospace, monospace;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;scroll-snap-type:y proximity}
+    body{
+      font-family:var(--font-body);color:var(--ink);background:var(--paper);
+      line-height:1.65;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+    }
+    body{
+  background:
+    radial-gradient(circle at top left, rgba(180,138,69,.14), transparent 32%),
+    radial-gradient(circle at top right, rgba(18,59,93,.10), transparent 30%),
+    var(--paper);
+}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+
+    .container{width:100%;max-width:min(var(--maxw),90vw);margin-inline:auto}
+    .eyebrow{
+      font-family:var(--font-mono);font-size:.72rem;letter-spacing:.18em;
+      text-transform:uppercase;color:var(--accent-ink);display:inline-block;margin-bottom:1.1rem;
+    }
+    h1,h2,h3{font-family:var(--font-display);font-weight:600;line-height:1.1;letter-spacing:-.015em;font-optical-sizing:auto}
+    .lead{color:var(--muted);font-size:clamp(1.02rem,1.6vw,1.18rem);max-width:100ch}
+
+    /* full-screen snap sections — content aligned to a consistent top position */
+    .section{
+      min-height:100vh; min-height:100dvh;
+      padding-top:calc(var(--nav-h) + 52px);
+      padding-bottom:72px;
+      display:flex;flex-direction:column;justify-content:flex-start;
+      scroll-snap-align:start;position:relative;
+    }
+
+    /* ============================================================
+       NAV
+       ============================================================ */
+    header.nav{
+      position:sticky;top:0;z-index:50;
+      transition:background .3s ease, box-shadow .3s ease, border-color .3s ease;
+      border-bottom:1px solid transparent;
+    }
+    header.nav.scrolled{
+      background:rgba(245,247,251,.85);
+      backdrop-filter:saturate(160%) blur(12px);
+      -webkit-backdrop-filter:saturate(160%) blur(12px);
+      border-bottom:1px solid var(--line);
+    }
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;height:var(--nav-h);width:100%;max-width:min(var(--maxw),90vw);margin-inline:auto}
+    .brand{font-family:var(--font-display);font-weight:600;font-size:1.08rem;letter-spacing:-.01em}
+    .brand span{color:var(--accent)}
+    .nav-links{display:flex;align-items:center;gap:1.7rem}
+    .nav-links a{font-size:.92rem;color:var(--ink-2);transition:color .2s}
+    .nav-links a:hover{color:var(--accent)}
+    .nav-links a.active{color:var(--accent);font-weight:700}   /* bold = the section you're on */
+    .nav-cta{
+      font-family:var(--font-mono);font-size:.8rem;letter-spacing:.04em;
+      padding:.5rem .95rem;border:1px solid var(--ink);border-radius:999px;
+      transition:background .2s,color .2s;
+    }
+    .nav-cta:hover{background:var(--ink);color:#fff}
+    .menu-btn{display:none;background:none;border:0;cursor:pointer;padding:.4rem;color:var(--ink)}
+
+    /* ============================================================
+       HERO  (stays vertically centered)
+       ============================================================ */
+    .hero{
+      min-height:100vh; min-height:100dvh;
+      display:flex;align-items:center;
+      padding-block:88px;overflow:hidden;
+      scroll-snap-align:start;position:relative;
+    }
+    .mesh{position:absolute;inset:0;z-index:0;pointer-events:none;filter:blur(60px);opacity:.5}
+    .mesh i{position:absolute;border-radius:50%;display:block}
+    .mesh .b1{width:46vw;height:46vw;left:-10vw;top:-14vw;background:radial-gradient(circle at 30% 30%,var(--g1),transparent 65%);animation:drift1 18s ease-in-out infinite}
+    .mesh .b2{width:40vw;height:40vw;right:-8vw;top:-6vw;background:radial-gradient(circle at 60% 40%,var(--g3),transparent 62%);animation:drift2 22s ease-in-out infinite}
+    .mesh .b3{width:38vw;height:38vw;right:8vw;bottom:-16vw;background:radial-gradient(circle at 50% 50%,var(--g2),transparent 64%);animation:drift1 26s ease-in-out infinite reverse}
+    @keyframes drift1{0%,100%{transform:translate(0,0)}50%{transform:translate(4%,5%)}}
+    @keyframes drift2{0%,100%{transform:translate(0,0)}50%{transform:translate(-5%,4%)}}
+
+    .hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.5fr .95fr;gap:clamp(2rem,5vw,4.5rem);align-items:center;width:100%;max-width:min(var(--maxw),90vw);margin-inline:auto}
+    .hero h1{font-size:clamp(2.7rem,6.5vw,5.2rem);margin:.2rem 0 .7rem;font-weight:600}
+    .hero h1 .ln{color:var(--accent)}
+    .hero-fields{font-family:var(--font-mono);font-size:.84rem;letter-spacing:.04em;color:var(--ink-2);margin-bottom:1.4rem}
+    .hero .lead{margin-bottom:2rem;max-width:54ch}
+    .cta-row{display:flex;flex-wrap:wrap;gap:.7rem}
+    .btn{
+      font-family:var(--font-mono);font-size:.86rem;letter-spacing:.02em;
+      display:inline-flex;align-items:center;gap:.5rem;
+      padding:.72rem 1.25rem;border-radius:999px;transition:transform .18s,background .2s,color .2s,border-color .2s;
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary{background:var(--ink);color:#fff}
+    .btn-primary:hover{background:var(--accent)}
+    .btn-ghost{border:1px solid var(--line);background:var(--surface);color:var(--ink-2)}
+    .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+
+    .portrait-wrap{display:flex;justify-content:center}
+    .portrait{
+      width:min(400px,150vw);aspect-ratio:3/4;border-radius:24px;position:relative;
+      background:conic-gradient(from 140deg,var(--g1),var(--g2),var(--g3),var(--g4),var(--g1));
+      padding:5px;box-shadow:0 30px 60px -28px rgba(27,58,107,.5);
+    }
+    .portrait-inner{width:100%;height:100%;border-radius:20px;overflow:hidden;background:var(--surface);display:flex;align-items:center;justify-content:center}
+    /* === YOUR PHOTO: delete the <div class="portrait-placeholder">VY</div> line in the HTML
+           below and put this in its place (after adding photo.jpg to your folder):
+           <img src="photo.jpg" alt="Vahid Yousefi" style="width:100%;height:100%;object-fit:cover"> === */
+    .portrait-placeholder{
+      width:100%;height:100%;display:flex;align-items:center;justify-content:center;
+      font-family:var(--font-display);font-size:3.6rem;font-weight:600;color:var(--accent);
+      background:linear-gradient(160deg,var(--accent-soft),#fff);letter-spacing:.02em;
+    }
+    .scroll-cue{
+      position:absolute;left:50%;bottom:26px;transform:translateX(-50%);z-index:1;
+      font-family:var(--font-mono);font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);
+      display:flex;flex-direction:column;align-items:center;gap:.4rem;
+    }
+    .scroll-cue svg{animation:bob 1.8s ease-in-out infinite}
+    @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+
+    /* ============================================================
+       SECTION HEADERS
+       ============================================================ */
+    .sec-head{max-width:100ch;margin-bottom:2.4rem}
+    .sec-head h2{font-size:clamp(1.9rem,3.6vw,2.8rem);margin-bottom:1rem}
+
+    /* ============================================================
+       ABOUT
+       ============================================================ */
+    .about-grid{display:grid;grid-template-columns:1.45fr 1fr;gap:clamp(2rem,5vw,4.5rem);width:100%}
+    .about-copy h2{font-size:clamp(1.9rem,3.6vw,2.9rem);margin-bottom:1.5rem;max-width:18ch}
+    .about-copy p{color:var(--ink-2);margin-bottom:1.15rem;max-width:60ch}
+    .about-copy .teach-lead{font-weight:500;color:var(--ink)}
+    .about-side{display:flex;flex-direction:column;gap:1.2rem}
+    .infocard{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);padding:1.6rem 1.7rem}
+    .infocard .card-title{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:1rem}
+    .row{padding:.7rem 0;border-bottom:1px solid var(--line)}
+    .row:last-child{border-bottom:0;padding-bottom:0}
+    .row:first-child{padding-top:0}
+    .row .v{font-weight:500;color:var(--ink)}
+    .row .v small{display:block;font-weight:400;color:var(--muted);font-size:.85rem;margin-top:.15rem}
+    .row .v a{border-bottom:1px solid var(--line);transition:color .2s,border-color .2s}
+    .row .v a:hover{color:var(--accent);border-color:var(--accent)}
+    .rbox,
+    .infocard,
+    .rcard,
+    .quote,
+    .talk{
+      box-shadow:0 20px 50px -38px rgba(11,16,32,.35);
+    }
+
+    /* ============================================================
+       RESEARCH — four uniform big boxes
+       Each box has two inner columns: left = title/details, right = description.
+       Change "2fr 3fr" below to change the split (e.g. 1fr 1fr for an even split).
+       ============================================================ */
+    .rbox{
+      display:grid;grid-template-columns:2fr 3fr;gap:clamp(1.4rem,3.5vw,3rem);align-items:start;
+      border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);
+      padding:clamp(1.8rem,3.2vw,2.8rem);margin-bottom:1.4rem;position:relative;overflow:hidden;
+      transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease;
+    }
+    .rbox:hover{transform:translateY(-3px);box-shadow:0 24px 46px -30px rgba(14,23,38,.5);border-color:#d3dceb}
+    .rbox::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(var(--g2),var(--g3))}
+    .rbox .p-cat{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+    .rbox h3{font-size:clamp(1.25rem,2vw,1.6rem);margin:.55rem 0 .6rem;line-height:1.24}
+    .rbox .authors{font-family:var(--font-mono);font-size:.78rem;color:var(--muted);margin-bottom:1.1rem}
+    .rbox .desc{color:var(--ink-2);margin-bottom:0}      /* no max-width: fills its column */
+    .rbox .desc .stage{color:var(--accent-ink);font-weight:600}
+    .tags{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:1.2rem}
+    .tag{
+      font-family:var(--font-mono);font-size:.7rem;letter-spacing:.02em;
+      padding:.34rem .62rem;border-radius:999px;background:var(--paper);border:1px solid var(--line);color:var(--muted);
+    }
+    .tag.status{background:var(--accent-soft);border-color:#cfdaea;color:var(--accent-ink)}
+    .tag.venue{background:#eef5fb;border-color:#cfe0f0;color:#2c5a8f}
+
+    /* ============================================================
+       METHODS / EXPERTISE
+       ============================================================ */
+    .methods-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-bottom:2.4rem}
+    .mcol h3{font-size:1.25rem;margin-bottom:1rem;display:flex;align-items:center;gap:.55rem}
+    .mcol h3 .dot{width:9px;height:9px;border-radius:50%;background:var(--accent)}
+    .mcol ul{list-style:none}
+    .mcol li{padding:.5rem 0;border-bottom:1px solid var(--line);color:var(--ink-2);font-size:.95rem}
+    .mcol li:last-child{border-bottom:0}
+    .recog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+    .rcard{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);padding:1.5rem 1.6rem}
+    .rcard .k{font-family:var(--font-mono);font-size:.9rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:.9rem}
+    .rcard p{color:var(--ink-2);font-size:.95rem;margin-bottom:.55rem}
+    .rcard p:last-child{margin-bottom:0}
+    .rcard .yr{font-family:var(--font-mono);color:var(--muted);font-size:.82rem}
+
+    /* Compact certification gallery */
+    .cert-list{margin-bottom:1rem}
+    .cert-gallery-label{
+      font-family:var(--font-mono);font-size:.66rem;letter-spacing:.08em;
+      text-transform:uppercase;color:var(--muted);display:block;margin-bottom:.65rem;
+    }
+    .cert-gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:.55rem}
+    .cert-thumb{
+      aspect-ratio:4/3;border:1px solid var(--line);border-radius:9px;overflow:hidden;
+      background:var(--paper);display:flex;align-items:center;justify-content:center;
+      transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease;
+    }
+    .cert-thumb:hover{
+      transform:translateY(-2px);border-color:var(--accent);
+      box-shadow:0 12px 24px -20px rgba(11,16,32,.55);
+    }
+    .cert-thumb img{width:100%;height:100%;object-fit:contain;padding:.25rem}
+    .cert-placeholder{
+      display:none;width:100%;height:100%;align-items:center;justify-content:center;
+      text-align:center;padding:.45rem;font-family:var(--font-mono);font-size:.58rem;
+      line-height:1.35;color:var(--muted);
+    }
+
+    /* ============================================================
+       TEACHING  (tightened: courses + student quotes + photos)
+       ============================================================ */
+    .teach-row{display:flex;align-items:baseline;justify-content:space-between;gap:1.5rem;padding:1rem 0;border-bottom:1px solid var(--line)}
+    .teach-row:first-of-type{border-top:1px solid var(--line)}
+    .teach-row .t-title{font-family:var(--font-display);font-weight:500;font-size:1.12rem}
+    .teach-row .t-meta{font-family:var(--font-mono);font-size:.76rem;color:var(--muted);letter-spacing:.02em;text-align:right}
+    .teaching-layout{display:grid;grid-template-columns:1.4fr .8fr;gap:1.6rem;align-items:start;margin-top:1.9rem;}
+    .teaching-layout .sub-label{margin-top:0;}
+    .teaching-layout .quotes-grid{grid-template-columns:repeat(2,1fr);}
+    .teaching-photos{display:grid;grid-template-columns:1fr;gap:1rem;}
+    .teaching-photos .photo{aspect-ratio:4/3;}
+    .teaching-photos img{width:100%;height:100%;object-fit:cover;}
+
+    .sub-label{font-family:var(--font-mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:1.9rem 0 1rem}
+    .quotes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+    .quote{
+      border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:12px;background:var(--surface);
+      padding:1.2rem 1.3rem;display:flex;flex-direction:column;gap:.8rem;
+    }
+    .quote p{color:var(--ink-2);font-size:.92rem;line-height:1.55}
+    .quote .sem{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-top:auto}
+
+    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.6rem}
+
+    /* PHOTO PLACEHOLDER — replace each block with an <img> (see comments in HTML) */
+    .photo{
+      position:relative;border-radius:12px;overflow:hidden;aspect-ratio:4/3;
+      background:linear-gradient(150deg,var(--accent-soft),#fff);
+      border:1px solid var(--line);display:flex;align-items:center;justify-content:center;text-align:center;
+    }
+    .photo .ph{display:flex;flex-direction:column;align-items:center;gap:.5rem;color:var(--muted);padding:1rem}
+    .photo .ph svg{opacity:.5}
+    .photo .ph span{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.04em}
+
+    /* ============================================================
+       TALKS / CONFERENCES
+       ============================================================ */
+    .talks-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.4rem}
+    .talk{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--surface);transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease;display:flex;flex-direction:column}
+    .talk:hover{transform:translateY(-3px);box-shadow:0 22px 44px -30px rgba(14,23,38,.5);border-color:#d3dceb}
+    .talk .photo{border:0;border-bottom:1px solid var(--line);border-radius:0;aspect-ratio:16/9}
+    .talk-body{padding:1.5rem 1.6rem 1.55rem}
+    .talk .yr{font-family:var(--font-mono);font-size:.74rem;letter-spacing:.06em;color:var(--accent);font-weight:500}
+    .talk h3{font-size:1.12rem;margin:.5rem 0 .55rem;line-height:1.28}
+    .talk .authors{font-family:var(--font-mono);font-size:.74rem;color:var(--muted)}
+    .talk .photo img{width:100%;height:100%;object-fit:cover;}
+    .talk-placeholder-card{width:100%;height:100%;padding:1.5rem;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:linear-gradient(150deg,var(--accent-soft),#fff);}
+    .talk-placeholder-card .small{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);}
+    .talk-placeholder-card .big{font-family:var(--font-display);font-size:clamp(1.35rem,2.2vw,2rem);line-height:1.1;color:var(--accent-ink);margin:.75rem 0;}
+
+    /* ============================================================
+       CONTACT (dark, centered)
+       ============================================================ */
+    .section--dark{background:radial-gradient(circle at 20% 20%, rgba(180,138,69,.25), transparent 30%),linear-gradient(135deg, #081f33 0%, #0b1020 55%, #123b5d 100%);color:#fff;overflow:hidden;justify-content:center;padding-block:88px;}
+    .section--dark .mesh{opacity:.4;filter:blur(70px)}
+    .contact-inner{position:relative;z-index:1;text-align:center;max-width:52ch;margin-inline:auto}
+    .section--dark .eyebrow{color:#9fc0e8}
+    .contact-inner h2{font-size:clamp(2rem,4vw,3.1rem);margin-bottom:1.1rem}
+    .contact-inner p{color:#c2cde0;margin-bottom:2rem;font-size:1.05rem}
+    .section--dark .btn-primary{background:#fff;color:var(--ink)}
+    .section--dark .btn-primary:hover{background:var(--accent);color:#fff}
+    .section--dark .btn-ghost{background:transparent;border-color:rgba(255,255,255,.25);color:#dce4ef}
+    .section--dark .btn-ghost:hover{border-color:#fff;color:#fff}
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    footer.foot{padding:2.4rem 0;border-top:1px solid var(--line)}
+    .foot-inner{display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;width:100%;max-width:min(var(--maxw),90vw);margin-inline:auto}
+    .foot-inner .small{font-family:var(--font-mono);font-size:.76rem;color:var(--muted);letter-spacing:.03em}
+    .foot-links{display:flex;gap:1.3rem}
+    .foot-links a{font-size:.86rem;color:var(--ink-2);transition:color .2s}
+    .foot-links a:hover{color:var(--accent)}
+
+    /* ============================================================
+       MOTION + REVEAL  (content stays visible even if JS doesn't run)
+       ============================================================ */
+    .reveal{transition:opacity .7s ease,transform .7s ease}
+    .js .reveal{opacity:0;transform:translateY(18px)}
+    .js .reveal.in{opacity:1;transform:none}
+    .hero .reveal{transition-delay:var(--d,0ms)}
+    :focus-visible{outline:2.5px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+    @media (prefers-reduced-motion:reduce){
+      *{animation:none!important}
+      .reveal,.js .reveal{opacity:1;transform:none;transition:none}
+      html{scroll-behavior:auto;scroll-snap-type:none}
+      .btn:hover,.rbox:hover,.talk:hover{transform:none}
+    }
+
+    /* ============================================================
+       RESPONSIVE
+       ============================================================ */
+    @media (max-width:880px){
+      .hero-grid{grid-template-columns:1fr;gap:2.6rem}
+      .portrait-wrap{order:-1}
+      .about-grid{grid-template-columns:1fr}
+      .teaching-layout{grid-template-columns:1fr}
+      .rbox{grid-template-columns:1fr;gap:.6rem}     /* boxes stack to one column on phones */
+      .methods-grid,.recog-grid,.gallery,.talks-grid,.quotes-grid{grid-template-columns:1fr}
+      .nav-links{
+        position:fixed;inset:var(--nav-h) 0 auto 0;flex-direction:column;gap:1.4rem;
+        background:rgba(245,247,251,.97);backdrop-filter:blur(12px);
+        padding:1.8rem 0 2.2rem;border-bottom:1px solid var(--line);
+        transform:translateY(-130%);transition:transform .32s ease;
+      }
+      .nav-links.open{transform:translateY(0)}
+      .menu-btn{display:block}
+      .teach-row{flex-direction:column;gap:.3rem}
+      .teach-row .t-meta{text-align:left}
+      .section,.hero{min-height:auto}
+    }
+    @media (min-width:881px) and (max-width:1040px){
+      .quotes-grid{grid-template-columns:repeat(2,1fr)}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===================== NAV ===================== -->
+  <header class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#top" class="brand">Vahid Yousefi<span></span></a>
+      <nav class="nav-links" id="navlinks">
+        <a href="#about">About</a>
+        <a href="#research">Research</a>
+        <a href="#methods">Methods</a>
+        <a href="#teaching">Teaching</a>
+        <a href="#talks">Talks</a>
+        <a href="#contact">Contact</a>
+        <a href="cv.pdf" class="nav-cta">CV ↗</a>
+      </nav>
+      <button class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ===================== HERO ===================== -->
+    <section class="hero">
+      <div class="mesh" aria-hidden="true"><i class="b1"></i><i class="b2"></i><i class="b3"></i></div>
+      <div class="hero-grid">
+        <div>
+          <span class="eyebrow reveal" style="--d:0ms">Marketing PhD Candidate (ABD) - Isenberg, UMass Amherst</span>
+          <h1 class="reveal" style="--d:80ms">Vahid <span class="ln">Yousefi</span></h1>
+          <p class="hero-fields reveal" style="--d:130ms">Marketing Strategy · Sales · Decision-Making · Consumer Behavior</p>
+          <p class="lead reveal" style="--d:180ms">My research spans marketing strategy, sales, and decision-making, at both the meso level of how firms compete and the micro level of how managers and consumers make choices. At its core is a fascination with how businesses actually work and how technology is reshaping the markets they operate in.</p>
+          <div class="cta-row reveal" style="--d:240ms">
+            <a href="cv.pdf" class="btn btn-primary">View CV</a>
+            <a href="mailto:vyousefi@umass.edu" class="btn btn-ghost">Email</a>
+            <a href="https://www.linkedin.com/in/vahid-yousefi" class="btn btn-ghost">LinkedIn</a>
+          </div>
+        </div>
+        <div class="portrait-wrap reveal" style="--d:200ms">
+          <div class="portrait">
+            <div class="portrait-inner">
+              <!-- YOUR PHOTO GOES HERE. After adding photo.jpg to your folder, replace the next line with:
+                   <img src="photo.jpg" alt="Vahid Yousefi" style="width:100%;height:100%;object-fit:cover"> -->
+              <img src="photo.jpg" alt="Vahid Yousefi" style="width:100%;height:100%;object-fit:cover">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-cue" aria-hidden="true">
+        Scroll
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+    </section>
+
+    <!-- ===================== ABOUT ===================== -->
+    <section class="section" id="about">
+      <div class="container about-grid">
+        <div class="about-copy reveal">
+          <span class="eyebrow">About</span>
+          <h2>My Motivation</h2>
+          <p>I'm fascinated by a simple question with endless depth: what makes a company thrive? My research follows that question into the minds of the executives who set strategy, the salesforce that carries it to market, and the consumers whose experience and well-being ultimately decide whether any of it works. I want to understand how good decisions get made, how technology is rewriting the rules of competition, and how markets can serve people better, not just sell to them more.</p>
+          <p class="teach-lead">That same curiosity shapes how I teach.</p>
+          <p>My goal in every class is for students to walk out feeling they learned something real. Shape ideas they'll actually use in their work and their lives. I want the material to feel important rather than abstract. Teaching them practical tools for understanding the markets they'll spend their careers in, and the confidence to put them to use.</p>
+        </div>
+        <aside class="about-side">
+          <div class="infocard reveal">
+            <span class="card-title">Education</span>
+            <div class="row"><span class="v">Ph.D. in Marketing (ABD)<small>UMass Amherst · Expected Sep. 2027 — proposal defended June 2026</small></span></div>
+            <div class="row"><span class="v">MBA, Business Administration<small>University of Tehran · 2018</small></span></div>
+            <div class="row"><span class="v">B.Sc. in Electrical Engineering<small>Shiraz University of Technology · 2015</small></span></div>
+          </div>
+          <div class="infocard reveal">
+            <span class="card-title">Dissertation Committee</span>
+            <div class="row"><span class="v"><a href="https://www.isenberg.umass.edu/people/thomas-brashear-alejandro">Dr. Thomas Brashear Alejandro</a><small>Chair</small></span></div>
+            <div class="row"><span class="v"><a href="https://www.isenberg.umass.edu/people/kun-qian">Dr. Kun Qian</a></span></div>
+            <div class="row"><span class="v"><a href="https://www.isenberg.umass.edu/people/veronica-martin-ruiz">Dr. Veronica Martin Ruiz</a></span></div>
+            <div class="row"><span class="v"><a href="https://www.isenberg.umass.edu/people/annie-ding">Dr. Meng Qi Ding</a></span></div>
+            <div class="row"><span class="v"><a href="https://www.umass.edu/social-sciences/about/directory/rosemary-pang">Dr. Rosemary Pang</a></span></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ===================== RESEARCH ===================== -->
+    <section class="section" id="research">
+      <div class="container">
+        <div class="sec-head reveal">
+          <span class="eyebrow">Research</span>
+          <h2>Four active projects across strategy and behavior.</h2>
+          <p class="lead">From executive cognition and market-based assets to consumer switching and psychological ownership.</p>
+        </div>
+
+        <!-- BOX 1 -->
+        <article class="rbox reveal">
+          <div>
+            <span class="p-cat">Dissertation · Marketing Strategy</span>
+            <h3>Executive Cognition and Market-Based Assets: The Influence of CEO Overconfidence on Brand, Social, and Knowledge Equity</h3>
+            <p class="authors">Vahid Yousefi &amp; Thomas Brashear Alejandro</p>
+            <div class="tags">
+              <span class="tag status">Data collection in progress</span>
+              <span class="tag venue">Target: J. of the Academy of Marketing Science</span>
+              <span class="tag">Panel Econometrics</span>
+              <span class="tag">Event-study DiD</span>
+              <span class="tag">Text Analysis</span>
+            </div>
+          </div>
+          <div>
+            <p class="desc">Intangible market-based assets now drive most of a firm's value, yet we know little about how the people at the top shape them. Grounded in Upper Echelons Theory, this project separates CEO overconfidence into overestimation, overplacement, and overprecision, and shows how each builds or erodes a firm's brand, social, and knowledge equity — with CMO presence and CEO emotionality as key moderators. It draws on a large panel of U.S. public firms (ExecuComp, Compustat, Capital IQ, ESG indicators, and earnings-call transcripts), complemented by a matched event-study design.<br> <strong>Stage:</strong> data collection is currently in progress.</p>
+          </div>
+        </article>
+
+        <!-- BOX 2 -->
+        <article class="rbox reveal">
+          <div>
+            <span class="p-cat">Marketing Scholarship</span>
+            <h3>You Are Who You Read and Where You Publish: Identifying Your Research Area and Tribe from Thought Leaders</h3>
+            <p class="authors">George Milne &amp; Vahid Yousefi</p>
+            <div class="tags">
+              <span class="tag status">Manuscript in preparation</span>
+              <span class="tag venue">Target: J. of Marketing Education</span>
+              <span class="tag">Web Scraping</span>
+              <span class="tag">Panel Econometrics</span>
+              <span class="tag">Cluster Analysis</span>
+            </div>
+          </div>
+          <div>
+            <p class="desc">This project maps the intellectual structure of marketing scholarship by analyzing the publication and citation records of leading marketing scholars collected from Google Scholar. Using scholars’ publication patterns across core marketing journals, we identify five distinct research “tribes” within the field. The goal is to make the hidden structure of academic marketing more visible, helping PhD students recognize their intellectual community, clarify their research interests, and navigate early career choices more deliberately. <br><br> <strong>Stage:</strong> data has been collected and analyzed; the manuscript is in preparation.</p>
+          </div>
+        </article>
+
+        <!-- BOX 3 -->
+        <article class="rbox reveal">
+          <div>
+            <span class="p-cat">Frontline Employees</span>
+            <h3>A Meta-Analytical Assessment of the Push–Pull–Mooring Theory</h3>
+            <p class="authors">Vahid Yousefi, Samira Yaabdollahi &amp; Hossein Hashemi Bahramani</p>
+            <div class="tags">
+              <span class="tag status">Manuscript in preparation</span>
+              <span class="tag venue">Target: J. of Business Research</span>
+              <span class="tag">Meta-Analysis</span>
+            </div>
+          </div>
+          <div>
+            <p class="desc">This project uses meta-analytic methods to synthesize empirical research on push, pull, and mooring factors among salespeople and frontline employees. Drawing on prior studies, we classify the forces that create pressure to leave, attract employees toward alternatives, or keep them attached to their current roles. The project aims to clarify how these forces operate across boundary-spanning work contexts and to identify where the literature offers strong evidence, inconsistent findings, or opportunities for future theory development. <br><br> <strong>Stage:</strong> data has been collected and initial meta-analyses have been conducted; the manuscript direction is currently being refined.</p>
+          </div>
+        </article>
+
+        <!-- BOX 4 -->
+        <article class="rbox reveal">
+          <div>
+            <span class="p-cat">Consumer Behavior</span>
+            <h3>Losing Control Behind the Wheel: How Subscription Models Shape Consumer Ownership and Fairness Perceptions</h3>
+            <p class="authors">Samira Yaabdollahi &amp; Vahid Yousefi</p>
+            <div class="tags">
+              <span class="tag status">Analysis in progress</span>
+              <span class="tag venue">Target: J. of Business Research</span>
+              <span class="tag">Experiments</span>
+            </div>
+          </div>
+          <div>
+            <p class="desc">As cars shift from things we own to things we subscribe to, what happens to our sense of ownership — and our sense of fairness? Using experiments, this project tests how subscription-based access reshapes psychological ownership and fairness perceptions in the automotive market. <br> <br><strong>Stage:</strong> data has been collected and analysis is in progress.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===================== METHODS ===================== -->
+    <section class="section" id="methods">
+      <div class="container">
+        <div class="sec-head reveal">
+          <span class="eyebrow">Methods &amp; Recognition</span>
+          <h2>Quantitative and Behavioral Toolkit.</h2>
+        </div>
+        <div class="methods-grid">
+          <div class="mcol reveal">
+            <h3><span class="dot"></span>Quantitative &amp; Causal</h3>
+            <ul>
+              <li>Panel / secondary-data econometrics</li>
+              <li>Structural models</li>
+              <li>Event-study difference-in-differences</li>
+            </ul>
+          </div>
+          <div class="mcol reveal">
+            <h3><span class="dot"></span>Computational</h3>
+            <ul>
+              <li>Machine learning</li>
+              <li>Text analysis</li>
+              <li>Meta-analysis</li>
+            </ul>
+          </div>
+          <div class="mcol reveal">
+            <h3><span class="dot"></span>Behavioral</h3>
+            <ul>
+              <li>Experimental design</li>
+              <li>Consumer decision-making</li>
+              <li>Survey methods</li>
+            </ul>
+          </div>
+        </div>
+        <div class="recog-grid">
+          <div class="rcard reveal">
+            <span class="k"> <strong> Honors &amp; Awards</strong></span>
+            <p>Harold E. Hardy Scholarship <span class="yr">· 2024</span></p>
+            <p>Full Doctoral Scholarship, UMass Amherst <span class="yr">· 2022</span></p>
+            <p>Isenberg Doctoral Fellowship <span class="yr">· 2022</span></p>
+          </div>
+          <div class="rcard reveal cert-card">
+            <span class="k"><strong>Certifications</strong></span>
+            <div class="cert-list">
+              <p>AMS Excellence in Marketing Education <br> (Generative AI)</p>
+              <p>Selling and Sales Management (ISBM)</p>
+              <p>Marketing Strategy Seminar (MSI)</p>
+            </div>
+
+            <span class="cert-gallery-label">Certificate gallery · click to enlarge</span>
+            <div class="cert-gallery">
+              <!-- Add these three image files to the same folder as this HTML file. -->
+              <a class="cert-thumb" href="certification-1.jpg" target="_blank" rel="noopener" aria-label="Open certificate 1">
+                <img src="certification-1.jpg" alt="AMS Excellence in Marketing Education certificate" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                <span class="cert-placeholder">Add<br>certification-1.jpg</span>
+              </a>
+              <a class="cert-thumb" href="certification-2.jpg" target="_blank" rel="noopener" aria-label="Open certificate 2">
+                <img src="certification-2.jpg" alt="Selling and Sales Management certificate" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                <span class="cert-placeholder">Add<br>certification-2.jpg</span>
+              </a>
+              <a class="cert-thumb" href="certification-3.jpg" target="_blank" rel="noopener" aria-label="Open certificate 3">
+                <img src="certification-3.jpg" alt="Marketing Strategy Seminar certificate" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                <span class="cert-placeholder">Add<br>certification-3.jpg</span>
+              </a>
+            </div>
+          </div>
+          <div class="rcard reveal">
+            <span class="k"> <strong> Languages </strong> </span>
+            <p>English</p>
+            <p>Persian (Farsi)</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== TEACHING ===================== -->
+    <section class="section" id="teaching">
+      <div class="container">
+        <div class="sec-head reveal">
+          <span class="eyebrow">Teaching</span>
+          <h2>In The Classroom.</h2>
+          <p class="lead">Instructor of Record — Isenberg School of Management, UMass Amherst.</p>
+        </div>
+
+        <div class="reveal">
+          <div class="teach-row">
+            <span class="t-title">Marketing Research</span>
+            <span class="t-meta">Instructor of Record · Fall 2024, Spring 2025, Spring 2026 · In person</span>
+          </div>
+          <div class="teach-row">
+            <span class="t-title">Fundamentals of Marketing</span>
+            <span class="t-meta">Instructor of Record · Summer 2025, Summer 2026 · Online</span>
+          </div>
+        </div>
+
+        <div class="teaching-layout reveal">
+
+  <div class="student-comments">
+    <p class="sub-label">What students say — Fall 2024 to Spring 2026</p>
+
+    <div class="quotes-grid">
+      <blockquote class="quote">
+        <p>“Professor Vahid has a lot of potential as a professor, as he was always happy to be in class and excited to teach us the course material.”</p>
+        <span class="sem">Fall 2024</span>
+      </blockquote>
+
+      <blockquote class="quote">
+        <p>“He seems very interested in the course content and wants his students to learn.”</p>
+        <span class="sem">Fall 2024</span>
+      </blockquote>
+
+      <blockquote class="quote">
+        <p>“The professor was able to take student feedback to improve his course throughout the semester.”</p>
+        <span class="sem">Spring 2025</span>
+      </blockquote>
+
+      <blockquote class="quote">
+        <p>“I felt like I learned a lot. I'm confident that the knowledge I gained this semester will help me in my future career.”</p>
+        <span class="sem">Spring 2025</span>
+      </blockquote>
+
+      <blockquote class="quote">
+        <p>“You can tell he cares about his job and his students. I thoroughly enjoyed this class.”</p>
+        <span class="sem">Spring 2026</span>
+      </blockquote>
+
+      <blockquote class="quote">
+        <p>“One of the most helpful professors during my time at UMass — you make me more excited to continue diving into marketing.”</p>
+        <span class="sem">Spring 2026</span>
+      </blockquote>
+    </div>
+  </div>
+
+  <div class="teaching-photos">
+    <div class="photo">
+      <img src="teaching-1.jpg" alt="Vahid Yousefi teaching in class">
+    </div>
+
+    <div class="photo">
+      <img src="teaching-2.jpg" alt="Classroom teaching moment">
+    </div>
+  </div>
+
+</div>
+      </div>
+    </section>
+
+    <!-- ===================== TALKS / CONFERENCES ===================== -->
+    <section class="section" id="talks">
+      <div class="container">
+        <div class="sec-head reveal">
+          <span class="eyebrow">Conference Presentations</span>
+          <h2>On The Podium.</h2>
+        </div>
+        <div class="talks-grid">
+
+          <article class="talk reveal">
+            <!-- Replace with: <img src="talk-2026.jpg" alt="AMS 2026"> -->
+            <div class="photo"><img src="talk-2026.jpg" alt="Vahid Yousefi presenting at Academy of Marketing Science 2026"></div>
+            <div class="talk-body">
+              <span class="yr">2026 · Academy of Marketing Science · Savannah, GA</span>
+              <h3>Pride, Precision, and Projection: CEO Confidence Types and Market-Based Assets</h3>
+              <p class="authors">Vahid Yousefi &amp; Thomas Brashear Alejandro</p>
+            </div>
+          </article>
+
+          <article class="talk reveal">
+            <!-- Replace with: <img src="talk-2025.jpg" alt="AMA Winter 2025"> -->
+            <div class="photo"><img src="talk-2025.jpg" alt="Vahid Yousefi presenting at AMA Winter Academic Conference 2025"></div>
+            <div class="talk-body">
+              <span class="yr">2025 · AMA Winter Academic Conference · Phoenix, AZ</span>
+              <h3>Confidence at the Helm: Exploring the Influence of CEO Overconfidence on Market-Based Assets</h3>
+              <p class="authors">Vahid Yousefi &amp; Thomas Brashear Alejandro</p>
+            </div>
+          </article>
+
+          <article class="talk reveal">
+            <!-- Replace with: <img src="talk-2024.jpg" alt="AMA Winter 2024"> -->
+            <div class="photo"><img src="talk-2024.jpg" alt="Vahid Yousefi presenting at AMA Winter Academic Conference 2024"></div>
+            <div class="talk-body">
+              <span class="yr">2024 · AMA Winter Academic Conference · St. Pete's Beach, FL</span>
+              <h3>Leader–Member Exchange and Relationship Quality: Impacts on Sales Performance and Turnover Intention</h3>
+              <p class="authors">Vahid Yousefi &amp; Thomas Brashear Alejandro</p>
+            </div>
+          </article>
+
+          <article class="talk reveal">
+            <!-- Replace with: <img src="talk-2023.jpg" alt="SMA 2023"> -->
+            <div class="photo">
+  <div class="talk-placeholder-card">
+    <span class="small">SMA 2023 · Fort Worth, TX</span>
+    <span class="big">AI &amp; Sales Cycle</span>
+    <span class="small">Conference Presentation</span>
+  </div>
+</div>
+            <div class="talk-body">
+              <span class="yr">2023 · Society for Marketing Advances · Fort Worth, TX</span>
+              <h3>Artificial Intelligence's Influence on Various Phases of the Sales Cycle</h3>
+              <p class="authors">Kaitlin Gravois, Vahid Yousefi &amp; Kristina Harrison</p>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CONTACT ===================== -->
+    <section class="section section--dark" id="contact">
+      <div class="mesh" aria-hidden="true"><i class="b1"></i><i class="b2"></i><i class="b3"></i></div>
+      <div class="contact-inner reveal">
+        <span class="eyebrow">Contact</span>
+        <h2>Let's connect.</h2>
+        <p>Whether it's a potential collaboration, a question about my research, or a conversation about teaching and markets, I'd love to hear from you. My inbox is always open — please don't hesitate to reach out.</p>
+        <div class="cta-row" style="justify-content:center">
+          <a href="mailto:vyousefi@umass.edu" class="btn btn-primary">vyousefi@umass.edu</a>
+          <a href="cv.pdf" class="btn btn-ghost">Download CV</a>
+          <a href="https://www.linkedin.com/in/vahid-yousefi" class="btn btn-ghost">LinkedIn</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="foot">
+    <div class="foot-inner">
+      <span class="small">© <span id="yr"></span> Vahid Yousefi · Marketing PhD Candidate, UMass Amherst</span>
+      <div class="foot-links">
+        <a href="#about">About</a>
+        <a href="#research">Research</a>
+        <a href="cv.pdf">CV</a>
+        <a href="mailto:vyousefi@umass.edu">Email</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('yr').textContent = new Date().getFullYear();
+
+    const nav = document.getElementById('nav');
+    const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 12);
+    onScroll();
+    window.addEventListener('scroll', onScroll, {passive:true});
+
+    const btn = document.getElementById('menuBtn');
+    const links = document.getElementById('navlinks');
+    btn.addEventListener('click', () => {
+      const open = links.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open);
+    });
+    links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      links.classList.remove('open'); btn.setAttribute('aria-expanded', false);
+    }));
+
+    // fade-in on scroll (with fallbacks so content never stays hidden)
+    const revealAll = () => document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+    try {
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+        }, {threshold:0.12, rootMargin:'0px 0px -40px 0px'});
+        document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+      } else { revealAll(); }
+    } catch (err) { revealAll(); }
+    setTimeout(() => document.querySelectorAll('.reveal:not(.in)').forEach(el => el.classList.add('in')), 1600);
+
+    // bold the nav item for whichever section is on screen
+    const sections = ['about','research','methods','teaching','talks','contact']
+      .map(id => document.getElementById(id)).filter(Boolean);
+    const navMap = {};
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      const id = a.getAttribute('href').replace('#',''); if(id) navMap[id]=a;
+    });
+    const spy = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        const a = navMap[e.target.id];
+        if(a && e.isIntersecting){
+          Object.values(navMap).forEach(x=>x.classList.remove('active'));
+          a.classList.add('active');
+        }
+      });
+    }, {threshold:0.5});
+    sections.forEach(s => spy.observe(s));
+  </script>
+</body>
+</html>
